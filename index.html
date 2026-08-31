@@ -339,13 +339,28 @@
         }
 
         .testimonial-grid {
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
+            display: flex;
             gap: 25px;
-
             margin-top: 50px;
+
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+
+            padding: 10px 5px 25px;
+            -webkit-overflow-scrolling: touch;
+
+            scrollbar-width: thin;
+        }
+
+        .testimonial-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .testimonial {
+            flex: 0 0 calc(33.333% - 17px);
+            scroll-snap-align: start;
         }
 
         .testimonial {
@@ -464,9 +479,12 @@
                 height: 400px;
             }
 
-            .feature-grid,
-            .testimonial-grid {
+            .feature-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .testimonial {
+                flex: 0 0 85%;
             }
 
             .promotion {
@@ -846,7 +864,24 @@
                 <div class="customer">
                     — Jimmy.
                 </div>
+            </div>
 
+            <div class="testimonial">
+
+                <div class="stars">
+                    ★★
+                </div>
+
+                <p>
+                    "Polyester badware made me hate this software, 
+                    Saucefy FIX YOUR SOFTWARE IMMEDIATELY"
+                </p>
+
+                <div class="customer">
+                    — BlissCD.
+                </div>
+
+            </div>
             </div>
 
 
