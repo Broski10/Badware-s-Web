@@ -508,11 +508,313 @@
             }
         }
 
+
+        /* =========================
+           BADWARE CHATBOT
+        ========================= */
+
+
+        /* =========================
+           CHATBOT AVATAR
+        ========================= */
+
+        /*
+         * CHANGE THIS VALUE ONLY:
+         * Put your avatar image in the same folder as this HTML file
+         * and change the filename below if necessary.
+         *
+         * Examples:
+         * "avatar.png"
+         * "badware-avatar.jpg"
+         * "images/badware-avatar.png"
+         */
+        :root {
+            --badware-avatar: url("avatar.png");
+        }
+
+        .chat-avatar {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background-image: var(--badware-avatar);
+            background-size: cover;
+            background-position: center;
+            background-color: #333;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .chat-message-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .chat-message-row .chat-message {
+            margin-bottom: 0;
+        }
+
+        .chat-message-row.user-row {
+            justify-content: flex-end;
+        }
+
+        .chat-message-row.user-row .chat-message {
+            max-width: 82%;
+        }
+
+        .chat-avatar-small {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            border-radius: 50%;
+            background-image: var(--badware-avatar);
+            background-size: cover;
+            background-position: center;
+            background-color: #333;
+            overflow: hidden;
+        }
+
+
+        .chat-toggle {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 2000;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 22px;
+            background: #111;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            transition: 0.25s;
+        }
+
+        .chat-toggle:hover {
+            transform: translateY(-3px);
+            background: #333;
+        }
+
+        .chat-window {
+            position: fixed;
+            right: 25px;
+            bottom: 90px;
+            width: 370px;
+            max-width: calc(100vw - 30px);
+            height: 520px;
+            max-height: calc(100vh - 120px);
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            overflow: hidden;
+            z-index: 1999;
+            display: none;
+            flex-direction: column;
+            border: 1px solid #ddd;
+        }
+
+        .chat-window.open {
+            display: flex;
+        }
+
+        .chat-header {
+            background: #111;
+            color: white;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-status {
+            width: 9px;
+            height: 9px;
+            background: #55c878;
+            border-radius: 50%;
+        }
+
+        .chat-header h3 {
+            font-size: 17px;
+            margin: 0;
+        }
+
+        .chat-header small {
+            display: block;
+            color: #aaa;
+            margin-top: 3px;
+            font-size: 11px;
+        }
+
+        .chat-close {
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 23px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 18px;
+            overflow-y: auto;
+            background: #f5f5f5;
+        }
+
+        .chat-message {
+            max-width: 82%;
+            margin-bottom: 12px;
+            padding: 11px 14px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.45;
+            word-wrap: break-word;
+        }
+
+        .chat-message.bot {
+            background: white;
+            color: #222;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .chat-message.user {
+            margin-left: auto;
+            background: #111;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input {
+            flex: 1;
+            min-width: 0;
+            border: 1px solid #ccc;
+            border-radius: 22px;
+            padding: 11px 15px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .chat-input:focus {
+            border-color: #777;
+        }
+
+        .chat-send {
+            width: 43px;
+            height: 43px;
+            border: none;
+            border-radius: 50%;
+            background: #111;
+            color: white;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .chat-send:hover {
+            background: #333;
+        }
+
+        .chat-typing {
+            display: none;
+            color: #777;
+            font-size: 12px;
+            margin: -4px 0 10px 4px;
+        }
+
+        @media (max-width: 500px) {
+            .chat-toggle {
+                right: 15px;
+                bottom: 15px;
+            }
+
+            .chat-window {
+                right: 15px;
+                bottom: 75px;
+                width: calc(100vw - 30px);
+                height: 500px;
+            }
+        }
+
     </style>
 </head>
 
 
 <body>
+
+    <!-- =========================
+         BADWARE CHATBOT
+    ========================= -->
+
+    <button class="chat-toggle" id="chatToggle" type="button">
+        🤖 Talk to Badware
+    </button>
+
+    <div class="chat-window" id="chatWindow" aria-hidden="true">
+        <div class="chat-header">
+            <div class="chat-header-title">
+                <div class="chat-avatar" id="headerAvatar" title="Badware avatar"></div>
+
+                <div>
+                    <h3>BADWARE.EXE</h3>
+                    <small>Online • Ready to help</small>
+                </div>
+            </div>
+
+            <div>
+
+                <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">
+                    ×
+                </button>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message-row bot-row">
+                <div class="chat-avatar-small"></div>
+                <div class="chat-message bot">
+                    Hello. I am the Badware Web Assistant. What do you want?
+                </div>
+            </div>
+
+            <div class="chat-typing" id="chatTyping">
+                Badware is thinking...
+            </div>
+        </div>
+
+        <form class="chat-input-area" id="chatForm">
+            <input
+                class="chat-input"
+                id="chatInput"
+                type="text"
+                placeholder="Type a message..."
+                autocomplete="off"
+                maxlength="500"
+            >
+            <button class="chat-send" type="submit" aria-label="Send message">
+                ➤
+            </button>
+        </form>
+    </div>
+
 
 
     <!-- =========================
@@ -990,6 +1292,188 @@
 
 
 
+
+
+    <script>
+        /* =========================
+           BADWARE CHATBOT LOGIC
+        ========================= */
+
+        const chatToggle = document.getElementById("chatToggle");
+        const chatWindow = document.getElementById("chatWindow");
+        const chatClose = document.getElementById("chatClose");
+        const chatForm = document.getElementById("chatForm");
+        const chatInput = document.getElementById("chatInput");
+        const chatMessages = document.getElementById("chatMessages");
+        const chatTyping = document.getElementById("chatTyping");
+        // The chatbot avatar is controlled by --badware-avatar in the CSS above.
+        // Users cannot change it from the chat interface.
+
+        function openChat() {
+            chatWindow.classList.add("open");
+            chatWindow.setAttribute("aria-hidden", "false");
+            chatInput.focus();
+        }
+
+        function closeChat() {
+            chatWindow.classList.remove("open");
+            chatWindow.setAttribute("aria-hidden", "true");
+        }
+
+        chatToggle.addEventListener("click", () => {
+            if (chatWindow.classList.contains("open")) {
+                closeChat();
+            } else {
+                openChat();
+            }
+        });
+
+        chatClose.addEventListener("click", closeChat);
+
+        function addMessage(text, sender) {
+            const row = document.createElement("div");
+            row.className = "chat-message-row " + sender + "-row";
+
+            const message = document.createElement("div");
+            message.className = "chat-message " + sender;
+            message.textContent = text;
+
+            if (sender === "bot") {
+                const avatar = document.createElement("div");
+                avatar.className = "chat-avatar-small";
+                row.appendChild(avatar);
+                row.appendChild(message);
+            } else {
+                row.appendChild(message);
+            }
+
+            chatMessages.insertBefore(row, chatTyping);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+
+        function getBotResponse(message) {
+            const text = message.toLowerCase().trim();
+
+            if (!text) {
+                return "You have to actually say something.";
+            }
+
+            if (
+                text.includes("hello") ||
+                text.includes("hi") ||
+                text.includes("hey")
+            ) {
+                return "Hello. I am Badware. Unfortunately, you have found me.";
+            }
+
+            if (
+                text.includes("what are you") ||
+                text.includes("who are you") ||
+                text.includes("what is badware")
+            ) {
+                return "I am the Badware Assistant. According to this website, Badware is smarter, simpler software designed to give you a better everyday technology experience.";
+            }
+
+            if (
+                text.includes("price") ||
+                text.includes("cost") ||
+                text.includes("how much")
+            ) {
+                return "The starting price displayed on this website is $999.";
+            }
+
+            if (
+                text.includes("feature") ||
+                text.includes("features")
+            ) {
+                return "Badware advertises three main features: Lightning Fast performance, Simple Design, and Made Secure.";
+            }
+
+            if (
+                text.includes("secure") ||
+                text.includes("security") ||
+                text.includes("privacy")
+            ) {
+                return "The website claims that Badware puts privacy and security at the center of the experience.";
+            }
+
+            if (
+                text.includes("review") ||
+                text.includes("reviews")
+            ) {
+                return "The website has a collection of reviews ranging from extremely positive to... considerably less positive.";
+            }
+
+            if (
+                text.includes("buy") ||
+                text.includes("purchase") ||
+                text.includes("install")
+            ) {
+                return "The Buy Now button is in the promotional section. You can also use the Install Now link at the top of the page.";
+            }
+
+            if (
+                text.includes("help") ||
+                text.includes("can you do")
+            ) {
+                return "I can answer basic questions about the Badware website, including its features, price, reviews, and advertised functionality.";
+            }
+
+            if (
+                text.includes("thank")
+            ) {
+                return "You're welcome. I think.";
+            }
+
+            if (
+                text.includes("fuck") ||
+                text.includes("hell") ||
+                text.includes("damn")
+            ) {
+                return "Language noted. How can I assist you?";
+            }
+
+            const fallbackResponses = [
+                "Interesting. Unfortunately, my knowledge of this particular subject is questionable.",
+                "I don't have an answer for that yet. Try asking me about Badware, its features, price, or reviews.",
+                "That is a fascinating question. I was not programmed for it.",
+                "I understand approximately 12% of what you just said.",
+                "Try asking me something about the software advertised on this page."
+            ];
+
+            return fallbackResponses[
+                Math.floor(Math.random() * fallbackResponses.length)
+            ];
+        }
+
+        chatForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const message = chatInput.value.trim();
+
+            if (!message) {
+                return;
+            }
+
+            addMessage(message, "user");
+            chatInput.value = "";
+
+            chatTyping.style.display = "block";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                chatTyping.style.display = "none";
+                addMessage(getBotResponse(message), "bot");
+            }, 500 + Math.random() * 700);
+        });
+
+        chatInput.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeChat();
+            }
+        });
+    </script>
 
 </body>
 </html>
